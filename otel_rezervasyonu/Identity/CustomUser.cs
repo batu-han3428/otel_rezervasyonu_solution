@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using otel_rezervasyonu.Models;
 
 namespace otel_rezervasyonu.Identity
 {

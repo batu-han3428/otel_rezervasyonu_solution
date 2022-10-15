@@ -8,8 +8,8 @@ namespace otel_rezervasyonu.Extension
     {
         public static IServiceCollection IdentityServerAyarlari(this IServiceCollection services)
         {
-            services.AddDbContext<CustomIdentityDbContext>(opt => opt.UseSqlServer("Server=SQLTSTSRV;Database=Otel;User Id=bisuser;Password=p@ssword1"));
-
+            services.AddDbContext<CustomIdentityDbContext>(opt => opt.UseSqlServer("Server=DESKTOP-J0S4R9L;Database=Otel;Trusted_Connection=true;"));
+           
 
             services.AddIdentity<CustomUser, IdentityRole>().AddEntityFrameworkStores<CustomIdentityDbContext>().
             AddDefaultTokenProviders();

@@ -12,7 +12,7 @@ using otel_rezervasyonu.Identity;
 namespace otel_rezervasyonu.Migrations
 {
     [DbContext(typeof(CustomIdentityDbContext))]
-    [Migration("20221014132807_initDb")]
+    [Migration("20221015105428_initDb")]
     partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,6 +224,129 @@ namespace otel_rezervasyonu.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("otel_rezervasyonu.Models.Rooms", b =>
+                {
+                    b.Property<int>("no")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("no"), 1L, 1);
+
+                    b.Property<int>("activeprice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("numberofactivebeds")
+                        .HasColumnType("int");
+
+                    b.Property<int>("numberofbeds")
+                        .HasColumnType("int");
+
+                    b.Property<int>("price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("renterid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("situation")
+                        .HasColumnType("bit");
+
+                    b.HasKey("no");
+
+                    b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            no = 101,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 500,
+                            situation = false
+                        },
+                        new
+                        {
+                            no = 102,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 500,
+                            situation = false
+                        },
+                        new
+                        {
+                            no = 103,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 500,
+                            situation = false
+                        },
+                        new
+                        {
+                            no = 104,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 500,
+                            situation = false
+                        },
+                        new
+                        {
+                            no = 105,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 500,
+                            situation = false
+                        },
+                        new
+                        {
+                            no = 201,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 600,
+                            situation = false
+                        },
+                        new
+                        {
+                            no = 202,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 600,
+                            situation = false
+                        },
+                        new
+                        {
+                            no = 203,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 600,
+                            situation = false
+                        },
+                        new
+                        {
+                            no = 204,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 600,
+                            situation = false
+                        },
+                        new
+                        {
+                            no = 205,
+                            activeprice = 0,
+                            numberofactivebeds = 0,
+                            numberofbeds = 2,
+                            price = 600,
+                            situation = false
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

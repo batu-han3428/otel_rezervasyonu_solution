@@ -48,7 +48,7 @@ namespace otel_rezervasyonu.Controllers
                     return View(model);
                 }
 
-                var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                var result = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
@@ -105,7 +105,7 @@ namespace otel_rezervasyonu.Controllers
                     mailbuilder.Append($"<p> Merhaba {user.UserName} </p><br/>");
                     mailbuilder.Append($"Mail adresinizi onaylamak için aşagida ki linki tıklayın.<br/>");
 
-                    mailbuilder.Append($"<a href='https://localhost:5001/ConfirmEmail/?uid={user.Id}&code={code}'>Email Onaylayın</a>");
+                    mailbuilder.Append($"<a href='https://localhost:7043/ConfirmEmail/?uid={user.Id}&code={code}'>Email Onaylayın</a>");
 
                     mailbuilder.Append("</body>");
 

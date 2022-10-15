@@ -50,6 +50,24 @@ namespace otel_rezervasyonu.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Rooms",
+                columns: table => new
+                {
+                    no = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    situation = table.Column<bool>(type: "bit", nullable: false),
+                    renterid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    numberofbeds = table.Column<int>(type: "int", nullable: false),
+                    numberofactivebeds = table.Column<int>(type: "int", nullable: false),
+                    price = table.Column<int>(type: "int", nullable: false),
+                    activeprice = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rooms", x => x.no);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -155,6 +173,23 @@ namespace otel_rezervasyonu.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Rooms",
+                columns: new[] { "no", "activeprice", "numberofactivebeds", "numberofbeds", "price", "renterid", "situation" },
+                values: new object[,]
+                {
+                    { 101, 0, 0, 2, 500, null, false },
+                    { 102, 0, 0, 2, 500, null, false },
+                    { 103, 0, 0, 2, 500, null, false },
+                    { 104, 0, 0, 2, 500, null, false },
+                    { 105, 0, 0, 2, 500, null, false },
+                    { 201, 0, 0, 2, 600, null, false },
+                    { 202, 0, 0, 2, 600, null, false },
+                    { 203, 0, 0, 2, 600, null, false },
+                    { 204, 0, 0, 2, 600, null, false },
+                    { 205, 0, 0, 2, 600, null, false }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -211,6 +246,9 @@ namespace otel_rezervasyonu.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Rooms");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -1,6 +1,103 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@model RoomRentalViewModel
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+         <div class="card">
+            <div class="card-header text-center">
+                Rezervasyon
+            </div>
+            <div class="card-body">
+                <div>
+                    <select class="form-select" multiple disabled>
+                        <option selected>Dolu Odalar</option>
+                        @{
+                            foreach (var item in @Model.ClosedRooms)
+                            {
+                                                <option value=@item.no>Oda-@item.no || Fiyat = @item.price</option>
+                            }
+                        }                      
+                    </select>
+                </div>
+                <form asp-action="Privacy" asp-controller="Home" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>                    
+                    <div class="mb-3">
+                            <select asp-for="RoomInformation.RoomNo" value="@Model.RoomInformation.RoomNo" class="form-select" aria-label="RoomNo" id="RoomNo" name="RoomNo">
+                                <option selected>Boş Odalar</option>
+                                @{
+                                foreach (var item in @Model.Rooms)
+                                {
+                                                    <option value=@item.no>Oda-@item.no || Fiyat = @item.price</option>
+                                }
+                                }                    
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="RoomInformation.DateOfEntry" value="@Model.RoomInformation.DateOfEntry" for="DateOfEntry" class="form-label">Giriş Tarihi</label>
+                        <input asp-for="RoomInformation.DateOfEntry" value="@Model.RoomInformation.DateOfEntry" class="form-control" type="date" id="DateOfEntry" name="DateOfEntry">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="RoomInformation.LeavingDate" value="@Model.RoomInformation.LeavingDate" for="LeavingDate" class="form-label">Çıkış Tarihi</label>
+                        <input asp-for="RoomInformation.LeavingDate" value="@Model.RoomInformation.LeavingDate" class="form-control" type="date" id="LeavingDate" name="LeavingDate">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="RoomInformation.NumberOfCustomers" value="@Model.RoomInformation.NumberOfCustomers" for="NumberOfCustomers" class="form-label">Çıkış Tarihi</label>
+                        <input min="1" max="3" asp-for="RoomInformation.NumberOfCustomers" value="@Model.RoomInformation.NumberOfCustomers" class="form-control" type="number" id="NumberOfCustomers" name="NumberOfCustomers">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-outline-success w-100">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Show a second modal and hide this one with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="successfull" aria-hidden="true" aria-labelledby="successfull" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Rezervasyon Bilgilendirme</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Rezervasyon kaydınız yapıldı. İyi günler dileriz.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Tamam</button>
+      </div>
+    </div>
+  </div>
+</div>
+<a hidden class="btn btn-primary" id="modalshow" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
+    @section Scripts {
+    <script type="text/javascript">
+         let modal = document.getElementById("successfull");
+        if ($(location).attr('search').split("=")[1] === "True")         
+           document.getElementById('modalshow').click();
+
+         
+    </script>
+    }
+</div>
