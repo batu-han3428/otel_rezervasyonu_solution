@@ -1,4 +1,3 @@
-using otel_rezervasyonu.Controllers;
 using otel_rezervasyonu.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
